@@ -4,8 +4,14 @@ const stringAsArryay = require('../utils/parseStringAsArray');
 
 module.exports = {
     async index(req, res) {
-        const dev = await Dev.find()
+        const { techs, latitude, longitude } = req.query;
 
-        return res.json("");
+        const techArrays = stringAsArryay(techs);
+
+        const dev = await Dev.find({
+            $in: techArrays
+        });
+
+        return res.json(dev);
     }
 }
