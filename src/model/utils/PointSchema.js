@@ -7,7 +7,7 @@ const PointSchema = new mongoose.Schema({
         required: true,
     },
     coordinates: {
-        type: [number],
+        type: [Number],
         required: true,
     },
 });

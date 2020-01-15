@@ -1,5 +1,5 @@
 module.exports = function parseStringAsArrays(arrayAsString){
-    return arrayAsString.Split(',').map(e => {
+    return arrayAsString.split(',').map(e =>
         e.trim()
-    });
+    );
 }
