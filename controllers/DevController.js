@@ -16,14 +16,12 @@ module.exports = {
         const location = { type: 'Point', coordinates: [longitude, latitude] };
         const techsArray  = arrayAsString(techs);
 
-        const developer = Dev.find({githubUserName});
-        
-        console.log(developer._id);
-        Dev.update({_id: developer._id }, { $set: { location, techs: techsArray }});
+        const oldDeveloper = await Dev.find({ } ,{githubUserName});
+ 
+       var result = await Dev.update({_id: oldDeveloper[0]._id }, { $set: { location, techs: techsArray }});
 
-        //const developer = Dev.findOne({_id: githubUserName });
             
-        return res.json("Atualizei");
+        return res.json("Update");
     },
 
     async destroy(req, res){
