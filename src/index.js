@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const cors = require('cors');
+const http = require('http');
+const websocket = require('socket.io');
 
 mongoose.connect(
         
@@ -11,9 +14,13 @@ mongoose.connect(
 
     });
     
-    const app = express();
+const app = express();
+const server = http.Server(app);
 
+websocket(server);
+
+app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-app.listen(3000);
+server.listen(3000);
