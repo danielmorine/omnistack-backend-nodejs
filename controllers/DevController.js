@@ -35,14 +35,14 @@ module.exports = {
     },
 
     async storage(req, res) {
-        const { githubUserName, techs, latitude, longitude } = req.body;
+        const { githubUserName, techs, latitude, longitude, name, bio } = req.body;
 
         let dev = await Dev.findOne({ githubUserName });
 
         if(!dev){
             const response = await axios.get(`https://api.github.com/users/${githubUserName}`);
         
-            const { name = login, avatar_url, bio } = response.data;
+            const { avatar_url } = response.data;
             
             const techsArray  = arrayAsString(techs);
             
